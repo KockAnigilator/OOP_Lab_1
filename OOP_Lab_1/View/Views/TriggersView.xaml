@@ -4,10 +4,162 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
-    <Grid>
-        <TextBlock Text="Triggers demo will be implemented here."
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center" />
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Padding="12" Margin="0 0 0 8"
+                CornerRadius="6" Background="#FF243044">
+            <StackPanel>
+                <TextBlock Text="Демонстрация триггеров WPF"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           Margin="0 0 0 4"/>
+                <TextBlock Text="PropertyTrigger, DataTrigger, EventTrigger, MultiTrigger"
+                           Foreground="#FFB0B8C5"
+                           FontSize="12"/>
+            </StackPanel>
+        </Border>
+
+        <!-- PropertyTrigger: изменение цвета при IsMouseOver -->
+        <Border Grid.Row="1" Padding="10" Margin="0 0 0 8"
+                Background="#FF1B2433" CornerRadius="6">
+            <StackPanel>
+                <TextBlock Text="PropertyTrigger (IsMouseOver)"
+                           Foreground="#FF9CC1FF"
+                           FontWeight="SemiBold"/>
+
+                <Button Content="Наведи курсор"
+                        Margin="0 6 0 0"
+                        Padding="8 4">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF3D5A80"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="#FF3D5A80"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF5B8DEF"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- DataTrigger: стиль по значению Status -->
+        <Border Grid.Row="2" Padding="10" Margin="0 0 0 8"
+                Background="#FF1B2433" CornerRadius="6">
+            <StackPanel>
+                <TextBlock Text="DataTrigger (по значению Status)"
+                           Foreground="#FF9CC1FF"
+                           FontWeight="SemiBold"/>
+
+                <ComboBox Margin="0 6 0 4"
+                          SelectedItem="{Binding Status, Mode=TwoWay}">
+                    <ComboBoxItem Content="Normal"/>
+                    <ComboBoxItem Content="Warning"/>
+                    <ComboBoxItem Content="Error"/>
+                </ComboBox>
+
+                <TextBlock Text="Текущий статус:"
+                           Foreground="#FFB0B8C5"/>
+
+                <Border Margin="0 4 0 0" Padding="4">
+                    <TextBlock Text="{Binding Status}" Name="StatusText"
+                               HorizontalAlignment="Center"/>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#FF101726"/>
+                            <Setter Property="CornerRadius" Value="4"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="Warning">
+                                    <Setter Property="Background" Value="#FF8A6D3B"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="Error">
+                                    <Setter Property="Background" Value="#FF8B3A3A"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- EventTrigger: анимация по клику (Button.Click) -->
+        <Border Grid.Row="3" Padding="10" Margin="0 0 0 8"
+                Background="#FF1B2433" CornerRadius="6">
+            <StackPanel>
+                <TextBlock Text="EventTrigger (анимация по клику)"
+                           Foreground="#FF9CC1FF"
+                           FontWeight="SemiBold"/>
+                <Button x:Name="PulseButton"
+                        Content="Кликни для анимации"
+                        Margin="0 6 0 0"
+                        Padding="8 4"
+                        Background="#FF3D5A80"
+                        Foreground="White">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleX)"
+                                                     To="1.1" Duration="0:0:0.1" AutoReverse="True"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleY)"
+                                                     To="1.1" Duration="0:0:0.1" AutoReverse="True"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <Button.RenderTransform>
+                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    </Button.RenderTransform>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- MultiTrigger: комбинация условий -->
+        <Border Grid.Row="4" Padding="10"
+                Background="#FF1B2433" CornerRadius="6">
+            <StackPanel>
+                <TextBlock Text="MultiTrigger (Status=Error и IsImportant=true)"
+                           Foreground="#FF9CC1FF"
+                           FontWeight="SemiBold"/>
+
+                <CheckBox Content="Важно"
+                          IsChecked="{Binding IsImportant, Mode=TwoWay}"
+                          Margin="0 6 0 4"/>
+
+                <Border Padding="6" x:Name="MultiTriggerBorder">
+                    <TextBlock Text="Множественный триггер" HorizontalAlignment="Center"/>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#FF101726"/>
+                            <Setter Property="BorderBrush" Value="#FF3D5A80"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Status}" Value="Error"/>
+                                        <Condition Binding="{Binding IsImportant}" Value="True"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Background" Value="#FF8B3A3A"/>
+                                    <Setter Property="BorderBrush" Value="#FFFFC0C0"/>
+                                    <Setter Property="BorderThickness" Value="2"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
-

@@ -4,10 +4,58 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
-    <Grid>
-        <TextBlock Text="OneWayBinding demo will be implemented here."
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center" />
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Padding="12" Margin="0 0 0 8"
+                CornerRadius="6" Background="#FF243044">
+            <StackPanel>
+                <TextBlock Text="OneWayBinding (односторонняя привязка)"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           Margin="0 0 0 4"/>
+                <TextBlock Text="Данные обновляются только из источника (ViewModel) → в UI."
+                           Foreground="#FFB0B8C5"
+                           FontSize="12"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Padding="12" Margin="0 0 0 8"
+                CornerRadius="6" Background="#FF1B2433">
+            <StackPanel>
+                <TextBlock Text="Прогресс выполнения (OneWay)"
+                           Foreground="#FF9CC1FF"
+                           FontWeight="SemiBold"/>
+
+                <ProgressBar Margin="0 6 0 4"
+                             Height="18"
+                             Minimum="0"
+                             Maximum="100"
+                             Value="{Binding Progress, Mode=OneWay}"/>
+
+                <TextBlock Foreground="White"
+                           Text="{Binding Progress, Mode=OneWay, StringFormat='Текущее значение: {0}%'}"/>
+
+                <TextBlock Margin="0 8 0 0"
+                           Foreground="#FFB0B8C5"
+                           Text="Прошедшее время (вычисляемое свойство):"/>
+                <TextBlock Foreground="White"
+                           Text="{Binding ElapsedFormatted, Mode=OneWay}"/>
+            </StackPanel>
+        </Border>
+
+        <TextBlock Grid.Row="2"
+                   Margin="0 8 0 0"
+                   TextWrapping="Wrap"
+                   Foreground="#FF8A96A8"
+                   FontSize="11">
+            Здесь UI не может изменить значения Progress или Elapsed.
+            ViewModel сама обновляет значения по таймеру, а интерфейс только отображает их
+            (односторонний поток данных источник → представление).
+        </TextBlock>
     </Grid>
 </UserControl>
-

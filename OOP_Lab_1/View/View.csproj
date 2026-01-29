@@ -79,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\Controls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -90,12 +94,20 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DefaultBindingViewModel.cs" />
     <Compile Include="ViewModels\OneTimeBindingViewModel.cs" />
+    <Compile Include="ViewModels\OneWayBindingViewModel.cs" />
+    <Compile Include="ViewModels\TriggersViewModel.cs" />
     <Compile Include="ViewModels\TwoWayBindingViewModel.cs" />
     <Compile Include="Views\DefaultBindingView.xaml.cs">
       <DependentUpon>DefaultBindingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OneTimeBindingView.xaml.cs">
       <DependentUpon>OneTimeBindingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OneWayBindingView.xaml.cs">
+      <DependentUpon>OneWayBindingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TriggersView.xaml.cs">
+      <DependentUpon>TriggersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TwoWayBindingView.xaml.cs">
       <DependentUpon>TwoWayBindingView.xaml</DependentUpon>
