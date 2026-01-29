@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +20,12 @@ namespace View
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Свойство окна, к которому выполняется прямая привязка
+        /// на вкладке DefaultBinding (для сравнения с привязкой к ViewModel).
+        /// </summary>
+        public string TextFromWindow { get; set; } = "Начальное значение из окна";
+
         public MainWindow()
         {
             InitializeComponent();
