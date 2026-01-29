@@ -89,9 +89,13 @@
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DefaultBindingViewModel.cs" />
+    <Compile Include="ViewModels\OneTimeBindingViewModel.cs" />
     <Compile Include="ViewModels\TwoWayBindingViewModel.cs" />
     <Compile Include="Views\DefaultBindingView.xaml.cs">
       <DependentUpon>DefaultBindingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OneTimeBindingView.xaml.cs">
+      <DependentUpon>OneTimeBindingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TwoWayBindingView.xaml.cs">
       <DependentUpon>TwoWayBindingView.xaml</DependentUpon>
