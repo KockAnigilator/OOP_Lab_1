@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Dmitriy\source\repos\OOP_Lab_1\View\obj\Debug\
+C:\Users\Dmitriy\Documents\GitHub\OOP_Lab_1\OOP_Lab_1\View\obj\Debug\
 View
 none
 false
 DEBUG;TRACE
-C:\Users\Dmitriy\source\repos\OOP_Lab_1\View\App.xaml
-1219584333
+C:\Users\Dmitriy\Documents\GitHub\OOP_Lab_1\OOP_Lab_1\View\App.xaml
+6-1054903273
 
 6-793535042
 13-38814620
-MainWindow.xaml;
+Views\DefaultBindingView.xaml;Views\OneTimeBindingView.xaml;Views\OneWayBindingView.xaml;Views\TriggersView.xaml;Views\TwoWayBindingView.xaml;MainWindow.xaml;
 
 True
 
